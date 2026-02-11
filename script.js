@@ -28,11 +28,10 @@ async function loadImages(batchCount = 1) {
     for (let b = 0; b < batchCount; b++) {
         const batchPromises = [];
         for (let i = 0; i < batchSize; i++) {
-            batchPromises.push(loadThumbnail(index));
-            index++;
+            batchPromises.push(loadThumbnail(index)); 
         }
         const results = await Promise.all(batchPromises);
-
+        index += batchSize;
         results.forEach((img) => {
             if (img) imageContainer.appendChild(img);
         });
